@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resultados del Primer Semestre de Mantenimiento · 2026</title>
+<meta name="description" content="Resultados del primer semestre de mantenimiento industrial 2026: fallas, tiempo perdido, MTBF, MTTR, equipos críticos, órdenes de trabajo y PMP.">
+<link rel="icon" href="img/logo_emblema.png" type="image/png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ NAVEGACIÓN ============ -->
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#portada">
+      <img src="img/logo_emblema.png" alt="">
+      <span class="brand-text">Mantenimiento<span>Análisis de fallas · 1S 2026</span></span>
+    </a>
+    <nav class="nav" aria-label="Secciones del informe">
+      <a href="#panorama">Panorama</a>
+      <a href="#tendencia">Tendencia</a>
+      <a href="#modos">Modos de falla</a>
+      <a href="#equipos">Equipos críticos</a>
+      <a href="#tiempos">MTTR y MTBF</a>
+      <a href="#gestion">Gestión</a>
+      <a href="#plan">Plan</a>
+    </nav>
+  </div>
+</header>
+<div class="hazard" aria-hidden="true"></div>
+
+<!-- ============ PORTADA ============ -->
+<section class="hero" id="portada">
+  <div class="wrap">
+    <span class="eyebrow">Presentación al equipo técnico · Enero – Junio 2026</span>
+    <h1>Así estuvo <em>la planta</em> este <u>semestre</u></h1>
+    <div class="hero-doc">Resultados del primer semestre de mantenimiento</div>
+    <p class="hero-sub">
+      505 fallas, 66.826 minutos de parada y una curva que empezó a ceder en junio.
+      Esto no busca responsables: busca patrones, porque un patrón sí se puede atacar.
+    </p>
+
+    <div class="readout">
+      <div>
+        <div class="k">Fallas registradas</div>
+        <div class="v">505</div>
+        <div class="f">84 por mes · 127 equipos intervenidos</div>
+      </div>
+      <div>
+        <div class="k">Tiempo perdido</div>
+        <div class="v hot">1.114<small>horas</small></div>
+        <div class="f">66.826 min · 46,4 días de planta detenida</div>
+      </div>
+      <div>
+        <div class="k">MTTR general</div>
+        <div class="v">2h 12<small>min</small></div>
+        <div class="f">132,3 min promedio por intervención</div>
+      </div>
+      <div>
+        <div class="k">Disponibilidad</div>
+        <div class="v">95,4<small>%</small></div>
+        <div class="f">MTBF / (MTBF + MTTR)</div>
+      </div>
+    </div>
+
+    <div class="ribbon">
+      <div class="ribbon-title">Minutos perdidos por mes · el pulso del semestre</div>
+      <div class="ribbon-track" id="ribbon"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 · PANORAMA ============ -->
+<section class="section" id="panorama">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-meta"><span class="sec-id">01</span><span class="sec-kicker">Panorama</span></div>
+      <h2>La pérdida está <em>concentrada</em></h2>
+      <p>El correctivo se llevó el 3,35 % del tiempo programado. Y no está repartido entre los 127 equipos: siete se llevan el 39 %.</p>
+    </div>
+
+    <div class="grid g4 reveal">
+      <div class="kpi" style="--accent:var(--alarm)">
+        <div class="kpi-head">
+          <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-9 12h7l-1 8 9-12h-7l1-8z"/></svg>
+          <span class="kpi-label">Fallas</span>
+        </div>
+        <div class="kpi-value" data-count="505">0</div>
+        <div class="kpi-foot">Máximo en mayo (109) · mínimo en febrero (63).</div>
+      </div>
+      <div class="kpi" style="--accent:var(--safety)">
+        <div class="kpi-head">
+          <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12M6 22h12M8 2v4.5c0 2 4 3 4 5.5s-4 3.5-4 5.5V22"/><path d="M16 2v4.5c0 2-4 3-4 5.5s4 3.5 4 5.5V22"/></svg>
+          <span class="kpi-label">Tiempo perdido</span>
+        </div>
+        <div class="kpi-value" data-count="66826">0</div><span class="kpi-unit">min</span>
+        <div class="kpi-foot"><b>1.114 h</b> · 46,4 días de planta detenida.</div>
+      </div>
+      <div class="kpi" style="--accent:var(--ok)">
+        <div class="kpi-head">
+          <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15h4l2.5-8 3.5 13 3-9 2 4h5"/></svg>
+          <span class="kpi-label">MTBF general</span>
+        </div>
+        <div class="kpi-value" data-count="45.4" data-dec="1">0</div><span class="kpi-unit">horas</span>
+        <div class="kpi-foot">La planta para <b>cada 1,9 días</b> en promedio.</div>
+      </div>
+      <div class="kpi" style="--accent:var(--warn)">
+        <div class="kpi-head">
+          <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0 6 6L15 18l-3-3 5.7-5.7a4.5 4.5 0 0 0-3-3z"/><path d="m9 9-6.5 6.5a2.1 2.1 0 0 0 3 3L12 12"/></svg>
+          <span class="kpi-label">MTTR general</span>
+        </div>
+        <div class="kpi-value" data-count="132.3" data-dec="1">0</div><span class="kpi-unit">min</span>
+        <div class="kpi-foot">2 h 12 min por intervención. <b>14 paros</b> de 8 horas.</div>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:16px">
+      <div class="card-title">Dónde se concentra la pérdida</div>
+      <p class="card-note">Minutos perdidos por línea o área · semestre completo</p>
+      <div class="chart-box tall"><canvas id="chartAreas"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 · TENDENCIA ============ -->
+<section class="section alt" id="tendencia">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-meta"><span class="sec-id">02</span><span class="sec-kicker">Tendencia mensual</span></div>
+      <h2>Mayo fue el peor, <em>junio</em> corrigió</h2>
+      <p>Junio bajó 29 % frente a mayo, con 34 fallas menos. Pero visto por trimestre el semestre empeoró: 31.449 min el primero contra 35.377 el segundo. Junio es la señal a sostener, no la victoria a celebrar.</p>
+    </div>
+
+    <div class="grid g23 reveal">
+      <div class="card">
+        <div class="card-title">Tiempo perdido y frecuencia</div>
+        <p class="card-note">Barras: minutos · Línea: número de fallas</p>
+        <div class="chart-box tall"><canvas id="chartTendencia"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Mes a mes</div>
+        <p class="card-note">Variación del tiempo perdido frente al mes anterior</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Mes</th><th class="n">Min</th><th class="n">Fallas</th><th class="n">MTTR</th><th>Var.</th></tr></thead>
+            <tbody id="tblMeses"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · MODOS DE FALLA ============ -->
+<section class="section" id="modos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-meta"><span class="sec-id">03</span><span class="sec-kicker">Análisis de Pareto</span></div>
+      <h2>Dos causas explican el <em>77 %</em></h2>
+      <p>Falla mecánica y daño de banda concentran el 77 % del tiempo perdido. Sumando la eléctrica, el 92 %. Los otros seis modos apenas explican el 8 %.</p>
+    </div>
+
+    <div class="grid g23 reveal">
+      <div class="card">
+        <div class="card-title">Pareto de modos de falla</div>
+        <p class="card-note">Barras: minutos · Línea: % acumulado · Corte del 80 %</p>
+        <div class="chart-box tall"><canvas id="chartPareto"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Detalle</div>
+        <p class="card-note">Ordenado por impacto en tiempo</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>#</th><th>Modo</th><th class="n">Min</th><th class="n">Frec.</th><th class="n">MTTR</th><th class="n">% acum.</th></tr></thead>
+            <tbody id="tblModos"></tbody>
+          </table>
+        </div>
+        <div class="note">
+          <b>Prioridades del 2.º semestre.</b> Mecánica: lubricación certificada y vibraciones.
+          Banda: estándar de empalme e inspección semanal. Eléctrica: termografía de tableros
+          y repuestos de variadores.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · EQUIPOS CRÍTICOS ============ -->
+<section class="section alt" id="equipos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-meta"><span class="sec-id">04</span><span class="sec-kicker">Equipos críticos</span></div>
+      <h2>Los que <em>repiten</em> mes tras mes</h2>
+      <p>Cruzando los seis Pareto mensuales aparecen los reincidentes reales. Siete equipos, de 127, se llevan 26.291 minutos: el 39 % del semestre.</p>
+    </div>
+
+    <div class="grid g32 reveal">
+      <div class="card">
+        <div class="card-title">Top 12 por tiempo perdido</div>
+        <p class="card-note">Minutos acumulados en el semestre</p>
+        <div class="chart-box xtall"><canvas id="chartEquipos"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Matriz de reincidencia</div>
+        <p class="card-note">En cuántos de los 6 Pareto mensuales aparece cada equipo</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Equipo</th><th>E F M A M J</th><th class="n">Rep.</th><th class="n">Min</th><th class="n">MTTR</th></tr></thead>
+            <tbody id="tblBad"></tbody>
+          </table>
+        </div>
+        <div class="legend"><span><i style="background:var(--safety)"></i>Mes dentro del 80 % crítico</span></div>
+        <div class="note">
+          <b>Sopladora Krupp N°2:</b> los 6 meses en el Pareto. Con la N°1 suman 12.623 min
+          (19 % del semestre) y comparten modos de falla, así que una sola solución técnica
+          sirve para las dos. <b>Compresora N°1 L1:</b> falla poco pero cada paro dura 243 min;
+          ahí el problema es la respuesta, no la frecuencia.
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:16px">
+      <div class="card-title">Por qué fallaron: causa dominante de los 4 más críticos</div>
+      <p class="card-note">Modo de falla que más tiempo consumió en cada equipo, y su peso dentro del propio equipo</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Equipo</th><th>Causa dominante</th><th class="n">% del equipo</th><th>Detalle típico reportado</th></tr></thead>
+          <tbody>
+            <tr><td><b>Sopladora Krupp N°2</b></td><td><span class="badge alta">Falla mecánica</span></td><td class="n">69 %</td><td>Acumulador de carga lento, repetido mes a mes</td></tr>
+            <tr><td><b>Sopladora Krupp N°1</b></td><td><span class="badge media">Falla eléctrica</span></td><td class="n">47 %</td><td>Variador alarmado y caídas de 24 V; casi empatada con la mecánica (44 %)</td></tr>
+            <tr><td><b>Compresora N°1 L1</b></td><td><span class="badge alta">Falla mecánica</span></td><td class="n">90 %</td><td>Retorno de jabón y tornillo de compresora desacoplado</td></tr>
+            <tr><td><b>Banda Envase–Cedis</b></td><td><span class="badge alta">Daño de banda</span></td><td class="n">100 %</td><td>Avería en el eje de transmisión y banda partida</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        Tres de los cuatro tienen una causa que domina casi por completo: no son fallas
+        aleatorias, son un componente puntual fallando una y otra vez. Ahí un análisis causa
+        raíz rinde más que cualquier ronda extra de inspección general.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · MTTR Y MTBF ============ -->
+<section class="section" id="tiempos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-meta"><span class="sec-id">05</span><span class="sec-kicker">MTTR y MTBF</span></div>
+      <h2>Cuánto tardamos y cada cuánto <em>paramos</em></h2>
+      <p>El MTTR es el indicador que más depende de nosotros: repuestos, herramienta lista y procedimiento claro lo mueven de inmediato.</p>
+    </div>
+
+    <div class="formula reveal">
+      <div class="lbl">MTBF general del semestre</div>
+      <div class="formula-line">
+        <span>MTBF =</span>
+        <span class="frac"><span class="top">Tiempo de operación</span><span class="bot">Número total de fallas</span></span>
+        <span>=</span>
+        <span class="frac"><span class="top">1.376.906 min</span><span class="bot">505 fallas</span></span>
+        <span>= 2.726,5 min</span>
+      </div>
+      <div class="formula-res">
+        <div class="res-chip"><div class="k">En minutos</div><div class="v">2.726,5</div></div>
+        <div class="res-chip hot"><div class="k">En horas</div><div class="v">45,4</div></div>
+        <div class="res-chip"><div class="k">En días</div><div class="v">1,9</div></div>
+        <div class="res-chip green"><div class="k">Meta 2.º semestre</div><div class="v">≥ 40,46 h</div></div>
+      </div>
+      <div class="note">
+        La planta produce <b>1,9 días seguidos</b> antes de la siguiente falla: una falla cada
+        6 turnos, aproximadamente. El MTBF mide el estado del activo y la efectividad del
+        preventivo, no el desempeño de las personas.
+      </div>
+    </div>
+
+    <div class="grid g23 reveal" style="margin-top:16px">
+      <div class="card">
+        <div class="card-title">Equipos con mayor MTTR</div>
+        <p class="card-note">Solo equipos con 3 o más fallas · la línea marca el MTTR de planta (132 min)</p>
+        <div class="chart-box xtall"><canvas id="chartMttrEq"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">MTBF mes a mes</div>
+        <p class="card-note">Horas entre fallas · más alto es mejor</p>
+        <div class="chart-box tall"><canvas id="chartMtbfDetalle"></canvas></div>
+        <div class="note">
+          <b>Dónde está la oportunidad:</b> los 14 paros de 480 minutos suman 6.720 min y buena
+          parte es espera de repuesto, no trabajo efectivo. Un kit por equipo crítico y un
+          procedimiento escrito recortan horas por evento.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · GESTIÓN ============ -->
+<section class="section alt" id="gestion">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-meta"><span class="sec-id">06</span><span class="sec-kicker">Órdenes de trabajo y PMP</span></div>
+      <h2>La ejecución <em>respondió</em></h2>
+      <p>7.836 órdenes cerradas de 8.469 (92,5 %) y un PMP promedio del 90,9 %, por encima de la meta. La alerta está en la pendiente, no en el promedio.</p>
+    </div>
+
+    <div class="grid g2 reveal">
+      <div class="card">
+        <div class="card-title">Estado de órdenes por mes</div>
+        <p class="card-note">Barras: finalizadas, pendientes y anuladas · Línea: % de cumplimiento</p>
+        <div class="chart-box tall"><canvas id="chartOT"></canvas></div>
+        <div class="note">
+          Solo <b>23 órdenes anuladas</b> en seis meses: la planeación es precisa. Pero las
+          pendientes se triplicaron, de 60 en enero a 186 en junio. Todo backlog que crece
+          vuelve en forma de correctivo.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Cumplimiento del PMP</div>
+        <p class="card-note">Actividades ejecutadas sobre programadas · meta 90 %</p>
+        <div class="chart-box tall"><canvas id="chartPMP"></canvas></div>
+        <div class="note">
+          <b>Hallazgo honesto:</b> mayo cumplió el PMP más alto del semestre (93,8 %) y aun así
+          fue el peor mes en paradas. Cumplir la rutina no basta si la rutina no ataca el modo
+          de falla real. El foco es la calidad del PMP, no solo su porcentaje.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 · BALANCE ============ -->
+<section class="section" id="balance">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-meta"><span class="sec-id">07</span><span class="sec-kicker">Balance</span></div>
+      <h2>Lo que logramos y lo que <em>falta</em></h2>
+    </div>
+
+    <div class="grid g2">
+      <div class="reveal">
+        <h3 class="list-head ok">Logros</h3>
+        <div class="stack">
+          <div class="item">
+            <svg class="item-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <div><h4>Disponibilidad del 95,4 %</h4><p>El correctivo se llevó solo el 3,35 % del tiempo programado.</p></div>
+          </div>
+          <div class="item">
+            <svg class="item-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <div><h4>Junio cerró bajando</h4><p>−29 % de tiempo perdido y 34 fallas menos que mayo.</p></div>
+          </div>
+          <div class="item">
+            <svg class="item-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <div><h4>Gestión sólida</h4><p>7.836 órdenes cerradas y PMP del 90,9 %, sobre la meta.</p></div>
+          </div>
+          <div class="item">
+            <svg class="item-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <div><h4>Daño de banda controlado</h4><p>Tras el pico de febrero, ningún mes volvió a superar los 1.400 min.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <h3 class="list-head op">Oportunidades</h3>
+        <div class="stack">
+          <div class="item op">
+            <svg class="item-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M10.3 3.9 2.4 17.2A1.8 1.8 0 0 0 4 20h16a1.8 1.8 0 0 0 1.6-2.8L13.7 3.9a1.9 1.9 0 0 0-3.4 0z"/><circle cx="12" cy="16.8" r=".9" fill="currentColor"/></svg>
+            <div><h4>Siete equipos, 39 % del tiempo</h4><p>Sin un plan específico para ellos, el indicador general no se mueve.</p></div>
+          </div>
+          <div class="item op">
+            <svg class="item-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M10.3 3.9 2.4 17.2A1.8 1.8 0 0 0 4 20h16a1.8 1.8 0 0 0 1.6-2.8L13.7 3.9a1.9 1.9 0 0 0-3.4 0z"/><circle cx="12" cy="16.8" r=".9" fill="currentColor"/></svg>
+            <div><h4>MTTR de 132 minutos</h4><p>El margen está en repuestos y procedimiento, no en más esfuerzo.</p></div>
+          </div>
+          <div class="item op">
+            <svg class="item-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M10.3 3.9 2.4 17.2A1.8 1.8 0 0 0 4 20h16a1.8 1.8 0 0 0 1.6-2.8L13.7 3.9a1.9 1.9 0 0 0-3.4 0z"/><circle cx="12" cy="16.8" r=".9" fill="currentColor"/></svg>
+            <div><h4>Backlog creciendo</h4><p>De 60 pendientes en enero a 186 en junio: se triplicó en el semestre.</p></div>
+          </div>
+          <div class="item op">
+            <svg class="item-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M10.3 3.9 2.4 17.2A1.8 1.8 0 0 0 4 20h16a1.8 1.8 0 0 0 1.6-2.8L13.7 3.9a1.9 1.9 0 0 0-3.4 0z"/><circle cx="12" cy="16.8" r=".9" fill="currentColor"/></svg>
+            <div><h4>Falla mecánica estructural</h4><p>57,7 % del tiempo y el MTTR más alto. Se resuelve con predictivo.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 · PLAN DE ACCIÓN ============ -->
+<section class="section alt" id="plan">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-meta"><span class="sec-id">08</span><span class="sec-kicker">Segundo semestre</span></div>
+      <h2>Plan de acción</h2>
+    </div>
+
+    <div class="plan-tabs reveal" role="tablist">
+      <button class="tab active" data-panel="p1" role="tab" aria-selected="true">Inmediato · 30 días</button>
+      <button class="tab" data-panel="p2" role="tab" aria-selected="false">Corto plazo · 90 días</button>
+      <button class="tab" data-panel="p3" role="tab" aria-selected="false">Semestre completo</button>
+    </div>
+
+    <div class="card reveal">
+      <div class="plan-panel active" id="p1">
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Acción</th><th>Qué resuelve</th><th>Meta</th><th>Prioridad</th></tr></thead>
+            <tbody>
+              <tr><td><b>Causa raíz de las dos sopladoras Krupp</b></td><td>12.623 min entre las dos máquinas</td><td>RCA con 5 acciones cerradas</td><td><span class="badge alta">Alta</span></td></tr>
+              <tr><td><b>Recuperar el cierre de órdenes de julio</b></td><td>555 pendientes acumuladas</td><td>Bajar a ≤ 150</td><td><span class="badge alta">Alta</span></td></tr>
+              <tr><td><b>Kit de repuestos de los 7 equipos críticos</b></td><td>MTTR de hasta 333 min por espera</td><td>Kit con stock mínimo</td><td><span class="badge alta">Alta</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="plan-panel" id="p2">
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Acción</th><th>Qué resuelve</th><th>Meta</th><th>Prioridad</th></tr></thead>
+            <tbody>
+              <tr><td><b>Ruta de lubricación certificada</b></td><td>Falla mecánica: 57,7 % del tiempo</td><td>100 % de rotativos críticos</td><td><span class="badge alta">Alta</span></td></tr>
+              <tr><td><b>Estándar de empalme y tensión de bandas</b></td><td>119 eventos de daño de banda</td><td>Procedimiento publicado y formado</td><td><span class="badge media">Media</span></td></tr>
+              <tr><td><b>Termografía trimestral de tableros</b></td><td>Fallas eléctricas, en pico en junio</td><td>2 campañas ejecutadas</td><td><span class="badge media">Media</span></td></tr>
+              <tr><td><b>Tope de backlog al cierre de mes</b></td><td>Pendientes triplicadas</td><td>≤ 100 órdenes por mes</td><td><span class="badge media">Media</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="plan-panel" id="p3">
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Acción</th><th>Qué resuelve</th><th>Meta</th><th>Prioridad</th></tr></thead>
+            <tbody>
+              <tr><td><b>Análisis de vibraciones en rotativos</b></td><td>Anticipar la falla antes del paro</td><td>Línea base de 20 equipos</td><td><span class="badge alta">Alta</span></td></tr>
+              <tr><td><b>Procedimientos de intervención rápida</b></td><td>MTTR general de 132 min</td><td>7 guías con fotos y torques</td><td><span class="badge media">Media</span></td></tr>
+              <tr><td><b>Revisión del PMP de los equipos críticos</b></td><td>Rutinas que no atacan el modo real</td><td>7 planes reescritos</td><td><span class="badge baja">Baja</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g4 reveal" style="margin-top:16px">
+      <div class="goal"><div class="k">Tiempo perdido</div><div class="from">66.826 min</div><div class="to">≤ 56.800</div></div>
+      <div class="goal"><div class="k">Fallas</div><div class="from">505</div><div class="to">≤ 430</div></div>
+      <div class="goal"><div class="k">MTTR</div><div class="from">132 min</div><div class="to">≤ 110</div></div>
+      <div class="goal"><div class="k">Cumplimiento PMP</div><div class="from">90,9 %</div><div class="to">≥ 93 %</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<div class="hazard" aria-hidden="true"></div>
+<section class="closing" id="cierre">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Conclusiones</span>
+      <h2>El semestre nos dejó un <em>mapa</em></h2>
+      <p>
+        El problema no está repartido en 127 equipos: está concentrado en siete. Y no está en la
+        voluntad del equipo, sino en el tiempo de respuesta y en la profundidad de las rutinas.
+        Eso es buena noticia: un problema difuso no se ataca, uno concentrado sí.
+      </p>
+      <p>Junio ya mostró que cuando el foco está claro, los números bajan. El reto del segundo semestre es hacer de junio la nueva normalidad.</p>
+      <div class="quote">Cada minuto que recuperamos lo ganamos entre todos, turno a turno.</div>
+
+      <div class="closing-stats">
+        <div class="cstat"><div class="v">95,4 %</div><div class="k">Disponibilidad</div></div>
+        <div class="cstat"><div class="v">7.836</div><div class="k">Órdenes cerradas</div></div>
+        <div class="cstat"><div class="v">90,9 %</div><div class="k">Cumplimiento PMP</div></div>
+        <div class="cstat"><div class="v">−29 %</div><div class="k">Tiempo perdido en junio</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>Primer semestre 2026 · Mantenimiento industrial</span>
+    <span>Elaborado por Carlos Recio</span>
+    <span>Fuente: reportes de paradas, órdenes de trabajo y PMP</span>
+  </div>
+</footer>
+
+<!-- Chart.js: primero desde CDN; si no hay internet, usa la copia local de /js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>window.Chart || document.write('<script src="js/chart.umd.js"><\/script>');</script>
+<script src="script.js"></script>
+</body>
+</html>

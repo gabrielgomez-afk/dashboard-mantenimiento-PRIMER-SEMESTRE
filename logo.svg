@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Mantenimiento Industrial">
+  <rect width="64" height="64" rx="14" fill="#0b2545"/>
+  <g fill="none" stroke="#f97316" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="32" r="9.5"/>
+    <path d="M32 12.5v6M32 45.5v6M12.5 32h6M45.5 32h6M18.2 18.2l4.3 4.3M41.5 41.5l4.3 4.3M45.8 18.2l-4.3 4.3M22.5 41.5l-4.3 4.3"/>
+  </g>
+  <circle cx="32" cy="32" r="3.1" fill="#22c55e"/>
+</svg>
